@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Make element to adjust its size to opt with its parrent element</title>
+<!--script to make element responsive to its parrent element's width in mobile devices -->
+<!--Make element to adjust its size to opt with its parrent element-->
+<script type="text/javascript">
+function responsive_element(target_element)
+{
+let re = target_element; //reponsive element(element which calls this function)
+let sw=window.innerWidth ||document.documentElement.clientWidth || document.body.clientWidth; //returns width of the screen
+/*Here I assumed devices with less than 650px screen width are mobile devices */
+if (sw <= 650) {
+let wre = re.parentElement.clientWidth; // returns width of parent of called element
+re.style.boxSizing="border-box";
+re.style.width=re.width=wre;
+re.style.height=re.height=wre/2;
+};
+};
+</script>
+<!--script to make element responsive to its parrent element's width in mobile devices-->
+
+</head>
+  
+<body>
+<div style="width: 900px; margin: auto; box-sizing: border-box;">
+<div style="width: 80%; margin: auto; box-sizing: border-box;">
+
+<iframe onload="responsive_element(this)" width="854" height="480" src="https://www.youtube.com/embed/WDX7MYSLVG4" frameborder="0" allowfullscreen></iframe>
+
+</div></div>
+</body>
+
+</html>
