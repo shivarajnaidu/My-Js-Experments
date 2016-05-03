@@ -13,13 +13,13 @@ let sw=window.innerWidth ||document.documentElement.clientWidth || document.body
 /*Here I assumed devices with less than 650px screen width are mobile devices */
 if (sw <= 650) {
 
-let wre = re.parentElement.clientWidth; // returns width of parent of called element
+let wre = re.parentElement.clientWidth || re.parentNode.clientWidth; // returns width of parent of called element
 
 re.style.boxSizing="border-box";
 
-re.style.width=re.width=wre;
+re.style.width=re.width=wre+"px";
 
-re.style.height=re.height=wre/2;
+re.style.height=re.height=(wre/2)+"px";
 
 };
 
