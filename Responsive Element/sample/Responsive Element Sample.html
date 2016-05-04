@@ -2,6 +2,7 @@
 <html>
 <head>
 <!--Test this in your mobile device -->
+<!--Don't forget to change "if (sw <= 650)" to "if (sw >= 650)" while testing this in Desktop screens -->
 <title>Make element to adjust its size to opt with its parrent element</title>
 <!--script to make element responsive to its parrent element's width in mobile devices -->
 <!--Make element to adjust its size to opt with its parrent element-->
@@ -14,11 +15,13 @@ let sw=window.innerWidth ||document.documentElement.clientWidth || document.body
 if (sw <= 650) {
 let wre = re.parentElement.clientWidth || re.parentNode.clientWidth; // returns width of parent of called element
 re.style.boxSizing="border-box";
-re.style.width=re.width=wre+"px";
-re.style.height=re.height=(wre/2)+"px";
+re.style.width=wre+"px";
+re.width=wre;
+re.style.height=(wre/2)+"px";
+re.height=wre/2;
 };
-let wre = re.parentElement.clientWidth || re.parentNode.clientWidth; // returns width of parent of called element
-document.querySelector("#uv").innerHTML=`${(wre/2)}px`; //`${}` template string notation.
+let wre = re.parentElement.clientWidth || re.parentNode.clientWidth;
+document.querySelector("#uv").innerHTML=`${re.style.width} , ${re.width} , ${re.style.height} , ${re.height}`; //`${}` template string notation to display variable values.
 };
 </script>
 <!--script to make element responsive to its parrent element's width in mobile devices-->

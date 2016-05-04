@@ -17,10 +17,13 @@ let wre = re.parentElement.clientWidth || re.parentNode.clientWidth; // returns 
 
 re.style.boxSizing="border-box";
 
-re.style.width=re.width=wre+"px";
+re.style.width=wre+"px";
 
-re.style.height=re.height=(wre/2)+"px";
+re.width=wre;
 
+re.style.height=(wre/2)+"px";
+
+re.height=wre/2;
 };
 
 };
