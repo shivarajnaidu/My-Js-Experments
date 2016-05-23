@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_blank" />
+<title>DOM Event Delegation Test</title>
+<style type="text/css">
+p{
+padding: 10px;
+border:1px solid gray;
+}
+.cActivePara{
+border:2px solid green;
+}
+.cActivelist{
+border:2px solid blue;
+}
+
+li{
+padding: 10px;
+border:1px solid red;
+display: inline-block;
+}
+</style>
+<script type="text/javascript">
+//Run the script after DOM Content is ready to interact with scripts 
+document.addEventListener("DOMContentLoaded", function() {
+
+let Click_Event_Handler = function (event) {
+
+let t = event.target;
+this.style.backgroundColor = "#efefef";
+if (t.hasAttribute("data-url") && t.nodeName == "P") {
+	t.className = "cActivePara";
+    location.href=t.getAttribute("data-url");
+
+} else if(t.nodeName=="LI"){
+
+    t.className = "cActivelist";
+    t.innerHTML = "You have clicked me";
+
+} else {
+		return false;
+};
+/*
+You can use code present in this comment block to know what is/which object is referenced by `this` keyword and also you can see object properties of object referenced by `this` key word.. 
+
+place this code in a block at which you want to find this keywords value..
+
+for (var key in this){
+let p = document.createElement("P");
+let te = document.createTextNode(key);
+let pt=p.appendChild(te);
+let b=document.createTextNode("\u002A");
+let ss=document.querySelector("#uvv");
+ss.appendChild(b);
+ss.appendChild(pt);
+};
+document.querySelector("#ux").innerHTML=this.nodeName||this.key;
+*/
+};
+document.querySelector("#uv").addEventListener("click", Click_Event_Handler );
+});
+
+</script>
+</head>
+<body>
+<div id="uv" style="width: 900px; margin: auto; box-sizing: border-box;">
+<div style="width: 92%; margin: auto; box-sizing: border-box;">
+<h1>Event Delegation</h1>
+<!--
+DOM event delegation is a mechanism of responding to ui-events via a single common parent rather than each child, through the magic of event "bubbling" (aka event propagation).
+
+When an event is triggered on an element, the following <a href="www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow-bubbling">occurs</a>:
+
+"The event is `dispatched` to its target `EventTarget` and any event listeners found there are triggered. Bubbling events will then trigger any additional event listeners found by following the `EventTarget`'s parent chain upward, checking for any event listeners registered on each successive `EventTarget`. This upward propagation will continue up to and including the `Document`."
+
+Event bubbling provides the foundation for event delegation in browsers. Now you can bind an event handler to a single parent element, and that handler will get executed whenever the event occurs on any of its child nodes (and any of their children in turn). This is event delegation. Here's an example of it in practice:
+<a href="https://en.wikipedia.org/wiki/DOM_events">about DOM events on wikipedia</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target">event target</a>
+
+What are the pros and cons?
+
+The benefits of JavaScript event delegation are:
+
+    There are less event handlers to setup and reside in memory. This is the big one; better performance and less crashing.
+    There’s no need to re-attach handlers after a DOM update. If your page content is generated dynamically, via Ajax for example, you don’t need to add and remove event handlers as elements are loaded or unloaded.
+
+The potential problems may be less clear, but once you are aware of them they’re easily avoided:
+
+    There’s a risk your event management code could become a performance bottleneck, so keep it as lean as possible.
+    Not all events bubble. The blur, focus, load and unload events don’t bubble like other events. The blur and focus events can actually be accessed using the capturing phase (in browsers other than IE) instead of the bubbling phase but that’s a story for another day.
+    You need caution when managing some mouse events. If your code is handling the mousemove event you are in serious risk of creating a performance bottleneck because the mousemove event is triggered so often. The mouseout event has a quirky behaviour that is difficult to manage with event delegation.
+<a href="https://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/">event delegation on site point</a>
+<a href="https://www.sitepoint.com/javascript-custom-events/">Custom events</a>
+-->
+<h2>Click on the elements to see changes</h2>
+<div id="ux"></div>
+<div id="uvv"></div>
+
+<p data-url="https://www.google.com">Paragraph Element 1 : google home page</p>
+<p data-url="https://opensourceinside.blogspot.com">Paragraph Element 2 : my blog</p>
+<p data-url="https://mbasic.facebook.com/opensourceinside">Paragraph Element 3 : my facebook page</p>
+<p data-url="https://mbasic.facebook.com/groups/opensourceinside">Paragraph Element 4 : my facebook group</p>
+<p data-url="https://m.twitter.com/yuvarajvemula">Paragraph Element 5 : my twitter page</p>
+
+<ul id="mylist">
+<li data-url="1">list 1</li>
+<li data-url="2">list 2</li>
+<li data-url="3">list 3</li>
+<li data-url="4">list 4</li>
+<li data-url="5">list 5</li>
+<li data-url="6">list 6</li>
+</ul>
+<!--
+See here.. 
+Here , we only only used one event listener to parent element (DIV element with id uv) instead of adding event listener to every child element..
+The event handler (function which is called when event occurs...) will decide how to react for when event occurs..
+we can handle that event to simulate as it is occurred in one of its child elements..  
+-->
+
+<div>
+<h3></h3>
+</div>
+</div></div>
+</body>
+
+</html>
