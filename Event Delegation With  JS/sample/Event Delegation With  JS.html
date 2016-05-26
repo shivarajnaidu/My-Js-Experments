@@ -24,41 +24,38 @@ display: inline-block;
 <script type="text/javascript">
 //Run the script after DOM Content is ready to interact with scripts 
 document.addEventListener("DOMContentLoaded", function() {
+  "use strict";
+  let Click_Event_Handler = function (event) {
+    let t = event.target;
+    this.style.backgroundColor = "#efefef";
+    if (t.hasAttribute("data-url") && t.nodeName == "P") {
+	  t.className = "cActivePara";
+      location.href=t.getAttribute("data-url");
+    } else if (t.nodeName=="LI"){
+        t.className = "cActivelist";
+        t.innerHTML = "You have clicked me";
+    } else {
+        return false;
+    };
+      /*
+       You can use code present in this comment block to know what is/which object is referenced by `this` keyword and also you can see object properties of object referenced by `this` key word.. 
 
-let Click_Event_Handler = function (event) {
+        place this code in a block at which you want to find this keywords value..
 
-let t = event.target;
-this.style.backgroundColor = "#efefef";
-if (t.hasAttribute("data-url") && t.nodeName == "P") {
-	t.className = "cActivePara";
-    location.href=t.getAttribute("data-url");
+        for (var key in this){
+          let p = document.createElement("P");
+          let te = document.createTextNode(key);
+          let pt=p.appendChild(te);
+          let b=document.createTextNode("\u002A");
+          let ss=document.querySelector("#uvv");
+          ss.appendChild(b);
+          ss.appendChild(pt);
+        };
+        document.querySelector("#ux").innerHTML=this.nodeName||this.key;
+       */
+  };
 
-} else if(t.nodeName=="LI"){
-
-    t.className = "cActivelist";
-    t.innerHTML = "You have clicked me";
-
-} else {
-		return false;
-};
-/*
-You can use code present in this comment block to know what is/which object is referenced by `this` keyword and also you can see object properties of object referenced by `this` key word.. 
-
-place this code in a block at which you want to find this keywords value..
-
-for (var key in this){
-let p = document.createElement("P");
-let te = document.createTextNode(key);
-let pt=p.appendChild(te);
-let b=document.createTextNode("\u002A");
-let ss=document.querySelector("#uvv");
-ss.appendChild(b);
-ss.appendChild(pt);
-};
-document.querySelector("#ux").innerHTML=this.nodeName||this.key;
-*/
-};
-document.querySelector("#uv").addEventListener("click", Click_Event_Handler );
+  document.querySelector("#uv").addEventListener("click", Click_Event_Handler );
 });
 
 </script>

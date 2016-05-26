@@ -3,12 +3,15 @@
 <head>
 <title>id-link creator</title>
 <script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+
 function idLinkcreator(ElementList) {
   "use strict";
   let x = ElementList || {};
   let b = document.createTextNode("\u00A0"); //unicode char for white space
+  
   function linkCreator(link) {
-	let a = document.createElement("A");
+    let a = document.createElement("A");
     a.text = link.text || "#";
     a.href = link.href || "#";
     a.target = link.target || "_blank";
@@ -24,7 +27,7 @@ function idLinkcreator(ElementList) {
       i.appendChild(linkCreator(s));
     }
   } catch(err){
-  	/*This block for clients which not yet supports `for of` iterator*/
+    /*This block for clients which not yet supports `for of` iterator*/
     for(let n = 0, xl = x.length; n < xl; n++) {
       let i = x[n];
       let s = {text:"\u26a1", href:"#"+x[n].id, target:"_self", classname:"sharing_links"};
@@ -32,7 +35,11 @@ function idLinkcreator(ElementList) {
       i.appendChild(linkCreator(s));
     }
   }
-}
+};
+
+idLinkcreator(document.querySelectorAll("li"));
+
+});
 </script>
 <style type="text/css">
 .sharing_links{
@@ -56,10 +63,6 @@ function idLinkcreator(ElementList) {
   </li><li id="digikam">Digikam</li>
 </ol>
 </div>
-
-<script type="text/javascript">
-idLinkcreator(document.querySelectorAll("li"))
-</script>
 </body>
 
 </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_blank" />
+    <title>social sharing buttons creator</title>
+    <style type="text/css">
+      #social-sharing-link-container {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.3);
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
+  
+      .social-sharing-buttons{
+        border-radius: 100%;
+        display:block !important;
+        width: 30px;
+        height: 30px; 
+        margin: 10px auto;
+        text-decoration:none  !important; 
+        color:#fff !important;
+        text-align: center !important;
+        font-weight: bold !important;
+        padding:10px !important;
+      }
+      
+      a#fb-uv{
+        border:2px solid transparent; 
+        background-color:#4862A3; 
+      }
+
+      a#twitter-uv{
+        border:2px solid transparent;
+        background-color: #2AAAE0;
+      }
+      a#gplus-uv{
+        border:2px solid transparent;
+        background-color: #D52323;  
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <style type="text/css">
+    	#no-script-share-list {
+    	  display: block;
+    	  width: 100%;
+    	  height: 30px;
+    	  position: fixed;
+    	  top: 0;
+    	  left: 0;
+    	}
+    	#no-script-share-list li {
+    	  display: inline-block;
+    	  position: relative;
+    	  left: 50%;
+    	  border:2px solid green;
+    	  box-sizing: border-box;
+    	}
+      </style>
+      <ul id="no-script-share-list">
+        <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php" title="Share on Facebook">f</a></li>
+        <li><a target="_blank" href="https://plus.google.com/share?url=opensourceinside.blogspot.com" title="Share on Google+">G</a></li>
+        <li><a target="_blank" href="http://twitter.com/share" title="Share on Twitter">T</a></li>
+        <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=opensourceinside.blogspot.com&title=opensource&summary=&source=" title="Share on LinkedIn">LinkedIn</a></li>
+      </ul>
+    </noscript>
+
+<!--This function will create social sharing buttons with transparent background overlay-->
+<!--In-order to improve performance and to reduce clutter, This function uses dynamic CSS classes technique to create/style transparent background overlay instead directly styling the elements with JavaScript.. So you have to define styles for layout created by this function and have to pass to function and have to apply them with script-->
+<button id="share">click to share</button>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  "use strict";
+  function socialSharinglinkCreator() {
+
+    function elementCreator(reqElement) {
+      let elem = document.createElement(reqElement.name);
+      elem.className = reqElement.class_name || "";
+      elem.id = reqElement.id || "";
+      elem.title = reqElement.title || "";
+      return elem;
+    }
+
+    function linkCreator(link_) {
+      let a = elementCreator({name: "A", class_name: link_.cname, id: link_.id, title: link_.title});
+      a.text = link_.text || "#";
+      a.href = link_.href || "#";
+      a.target = link_.target || "_blank";
+      return a;
+    }
+    
+    let sharingButtonsclassname = "social-sharing-buttons";
+
+    let facebook = {};
+    facebook.text = "f";
+    facebook.href = "https://www.facebook.com/sharer.php?u=" + location.href;
+    facebook.cname = sharingButtonsclassname;
+    facebook.title = "Share On Facebook";
+    facebook.id = "fb-uv";
+
+    let twitter = {};
+    twitter.text = "T";
+    twitter.href = "https://twitter.com/share?url=" + location.href;
+    twitter.cname = sharingButtonsclassname;
+    twitter.title = "Share On Twitter";
+    twitter.id = "twitter-uv";
+
+    let googlePlus = {};
+    googlePlus.text = "G";
+    googlePlus.href = "https://plus.google.com/share?url=" + location.href;
+    googlePlus.cname = sharingButtonsclassname;
+    googlePlus.title = "Share On Google Plus";
+    googlePlus.id = "gplus-uv";
+
+    let reddit = {};
+    reddit.text = "Reddit";
+    reddit.href = "http://www.reddit.com/submit?url=" + location.href;
+    reddit.cname = sharingButtonsclassname;
+    reddit.title = "Share On Reddit";
+    reddit.id = "";
+
+
+    let facebookButton = linkCreator(facebook);
+    let googleplusButton = linkCreator(googlePlus);
+    let twitterButton = linkCreator(twitter);
+    let redditButton = linkCreator(reddit);
+
+    function socialShareLayouthandler(event) {
+      containerDiv.removeEventListener("click", socialShareLayouthandler);
+      containerDiv.style.display = "none";
+    }
+
+    let containerDiv = elementCreator({name: "DIV", id: "social-sharing-link-container"});
+    containerDiv.appendChild(facebookButton);
+    containerDiv.appendChild(googleplusButton);
+    containerDiv.appendChild(twitterButton);
+    containerDiv.appendChild(redditButton);
+    document.body.appendChild(containerDiv);
+    containerDiv.addEventListener("click", socialShareLayouthandler);
+  }
+
+  //document.querySelector("#share").addEventListener("click", socialSharinglinkCreator);
+  socialSharinglinkCreator();
+
+});
+</script>    
+
+</body></html>
