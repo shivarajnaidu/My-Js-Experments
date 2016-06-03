@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     reddit.id = "reddit-sharer-uv";
 
     let linkedin = {};
-    linkedin.text = "linkedin"
+    linkedin.text = "Linkedin"
     linkedin.href = "https://www.linkedin.com/shareArticle?url=" + location.href;
     linkedin.cname = sharingButtonsclassname;
     linkedin.title = "Share On LinkedIn"
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     containerDiv.addEventListener("click", socialShareLayouthandler);
   }
 
-  //document.querySelector("#share").addEventListener("click", socialSharinglinkCreator);
+  document.querySelector("#share").addEventListener("click", socialSharinglinkCreator);
   socialSharinglinkCreator();
 
 });
