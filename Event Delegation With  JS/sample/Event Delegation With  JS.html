@@ -1,68 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base target="_blank" />
-<title>DOM Event Delegation Test</title>
-<style type="text/css">
-p{
-padding: 10px;
-border:1px solid gray;
-}
-.cActivePara{
-border:2px solid green;
-}
-.cActivelist{
-border:2px solid blue;
-}
+    <base target="_blank" />
+    <title>DOM Event Delegation Test</title>
+    <style type="text/css">
+      p{
+        padding: 10px;
+        border:1px solid gray;
+      }
 
-li{
-padding: 10px;
-border:1px solid red;
-display: inline-block;
-}
-</style>
-<script type="text/javascript">
-//Run the script after DOM Content is ready to interact with scripts 
-document.addEventListener("DOMContentLoaded", function() {
-  "use strict";
-  let Click_Event_Handler = function (event) {
-    let t = event.target;
-    this.style.backgroundColor = "#efefef";
-    if (t.hasAttribute("data-url") && t.nodeName == "P") {
-	  t.className = "cActivePara";
-      location.href=t.getAttribute("data-url");
-    } else if (t.nodeName=="LI"){
-        t.className = "cActivelist";
-        t.innerHTML = "You have clicked me";
-    } else {
-        return false;
-    };
-      /*
-       You can use code present in this comment block to know what is/which object is referenced by `this` keyword and also you can see object properties of object referenced by `this` key word.. 
+      .cActivePara{
+        border:2px solid green;
+      }
 
-        place this code in a block at which you want to find this keywords value..
+      .cActivelist{
+        border:2px solid blue;
+      }
 
-        for (var key in this){
-          let p = document.createElement("P");
-          let te = document.createTextNode(key);
-          let pt=p.appendChild(te);
-          let b=document.createTextNode("\u002A");
-          let ss=document.querySelector("#uvv");
-          ss.appendChild(b);
-          ss.appendChild(pt);
-        };
-        document.querySelector("#ux").innerHTML=this.nodeName||this.key;
-       */
-  };
-
-  document.querySelector("#uv").addEventListener("click", Click_Event_Handler );
-});
-
-</script>
+      li{
+        padding: 10px;
+        border:1px solid red;
+        display: inline-block;
+      }
+    </style>
 </head>
 <body>
-<div id="uv" style="width: 900px; margin: auto; box-sizing: border-box;">
-<div style="width: 92%; margin: auto; box-sizing: border-box;">
+<div id="uv" style="width: 900px; margin: auto; padding:10px;">
+
 <h1>Event Delegation</h1>
 <!--
 DOM event delegation is a mechanism of responding to ui-events via a single common parent rather than each child, through the magic of event "bubbling" (aka event propagation).
@@ -92,7 +56,6 @@ The potential problems may be less clear, but once you are aware of them they’
 -->
 <h2>Click on the elements to see changes</h2>
 <div id="ux"></div>
-<div id="uvv"></div>
 
 <p data-url="https://www.google.com">Paragraph Element 1 : google home page</p>
 <p data-url="https://opensourceinside.blogspot.com">Paragraph Element 2 : my blog</p>
@@ -108,17 +71,17 @@ The potential problems may be less clear, but once you are aware of them they’
 <li data-url="5">list 5</li>
 <li data-url="6">list 6</li>
 </ul>
-<!--
-See here.. 
-Here , we only only used one event listener to parent element (DIV element with id uv) instead of adding event listener to every child element..
+
+
+<div style="font-weight:700; line-height:1.5;">
+See here..<br/>
+Here , we only added one event listener to parent element (DIV element with id uv) instead of adding event listener to every child ..<br/>
 The event handler (function which is called when event occurs...) will decide how to react for when event occurs..
 we can handle that event to simulate as it is occurred in one of its child elements..  
--->
-
-<div>
-<h3></h3>
 </div>
-</div></div>
+
+</div>
+<script src=../src/src.js></script>
 </body>
 
 </html>
