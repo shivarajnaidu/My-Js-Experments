@@ -53,18 +53,25 @@ document.addEventListener("DOMContentLoaded", function() {
     reddit.id = "reddit-sharer-uv";
 
     let linkedin = {};
-    linkedin.text = "Linkedin"
+    linkedin.text = "Linkedin";
     linkedin.href = "https://www.linkedin.com/shareArticle?url=" + location.href;
     linkedin.cname = sharingButtonsclassname;
     linkedin.title = "Share On LinkedIn"
     linkedin.id = "linkedin-sharer-uv";
 
+    let stumbleupon = {};
+    stumbleupon.text = "Stumbleupon";
+    stumbleupon.href = "http://www.stumbleupon.com/submit?url=" + location.href;
+    stumbleupon.cname = sharingButtonsclassname;
+    stumbleupon.title = "Share On Stumbleupon";
+    stumbleupon.id = "stumbleupon-sharer-uv";
 
     let facebookButton = linkCreator(facebook);
     let googleplusButton = linkCreator(googlePlus);
     let twitterButton = linkCreator(twitter);
     let redditButton = linkCreator(reddit);
     let linkedinButton = linkCreator(linkedin);
+    let stumbleuponButton = linkCreator(stumbleupon);
 
     let containerDiv = elementCreator({name: "DIV", id: "social-sharing-link-container-layout"});
     containerDiv.appendChild(facebookButton);
@@ -72,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
     containerDiv.appendChild(googleplusButton);
     containerDiv.appendChild(linkedinButton);
     containerDiv.appendChild(redditButton);
+    containerDiv.appendChild(stumbleuponButton);
     document.body.appendChild(containerDiv);
 
     function socialShareLayouthandler(event) {

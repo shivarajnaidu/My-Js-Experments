@@ -1,0 +1,47 @@
+#social-sharing-link-container-layout {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 30px;
+}
+  
+.social-sharing-buttons{
+  border-radius: 3px;
+  border:2px solid transparent;
+  color:#fff !important;
+  display:block !important;
+  font-family: "Pt serif","Georgia",Arial,sans-serif;
+  font-size: 20px;
+  font-weight: bold !important;
+  line-height: 32px;
+  letter-spacing: 1px;
+  width: 100px;
+  height: 30px; 
+  margin: 10px auto;
+  text-decoration:none  !important; 
+  text-align: center !important;
+  font-weight: bold !important;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+#fb-sharer-uv{
+  background-color:#4862A3; 
+}
+
+#linkedin-sharer-uv, #twitter-sharer-uv{
+  background-color: #2AAAE0;
+}
+#gplus-sharer-uv{
+  background-color: #D52323;  
+}
+#reddit-sharer-uv{
+  background-color: red;  
+}
+#stumbleupon-sharer-uv {
+  background-color: #f14829;
+}
