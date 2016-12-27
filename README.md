@@ -1,2 +1,3 @@
-# Responsive-Element
-Making html element responsive or fit to its parent element on mobile devices with the help of javascript 
+# My-Js-Experments
+This repo is just for My misc experiments with JS :)
+HAPPY EXPERIMENTING.. :) :+1:
